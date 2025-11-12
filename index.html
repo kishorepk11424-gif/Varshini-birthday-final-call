@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎁 Birthday Surprise 🎉</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 720px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      outline: none;
+    }
+
+    .message {
+      font-size: 1.3em;
+      background: rgba(255,255,255,0.2);
+      padding: 15px 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+    }
+
+    #countdown {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="content"></div>
+
+  <script>
+    const unlockTime = new Date("2025-12-05T00:00:00");
+    const contentDiv = document.getElementById("content");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = unlockTime - now;
+
+      if (diff <= 0) {
+        // Show the video after unlock time
+        contentDiv.innerHTML = `
+          <h1>🎉 Happy Birthday 🎂💖</h1>
+          <video controls autoplay>
+            <source src="https://dl.dropboxusercontent.com/scl/fi/sz4g3pbvzhw34ijc51zp8/varshini-bday-2.mp4?rlkey=89fcftsmtwy7av10xcremzqby&st=qnddg8fn&dl=0" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="message">🎊 Hope this surprise made you smile 💕</p>
+        `;
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        contentDiv.innerHTML = `
+          <h1>🎁 Surprise locked till Dec 5, 2025 ⏰</h1>
+          <p class="message">🎊 Surprise iruku at Dec 5, 12:00 AM! 💖<br>
+          Etho ennala mudinchathu 🥹<br><br>
+          ⏳ Wait for it...</p>
+          <div id="countdown">${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs left!</div>
+        `;
+      }
+    }
+
+    // Update countdown every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
